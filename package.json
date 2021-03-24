@@ -1,0 +1,20 @@
+{
+  "name": "react-ukol",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karolinavor/react-ukol.git"
+  },
+  "keywords": [],
+  "author": "Karolina <vorlickovakarolina@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karolinavor/react-ukol/issues"
+  },
+  "homepage": "https://github.com/karolinavor/react-ukol#readme"
+}
