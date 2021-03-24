@@ -19,6 +19,26 @@ kontrolu)
 2) Nástroj bude obsahovat formulář formou tabulky (nebude se zobrazovat, pokud
 nebude nahráno CSV), kde rozložení bude stejné jako v CSV souboru. V každém řádku půjde vybrat buď jedna nebo žádná z obtížností. Poslední sloupec, který nebude v CSV, ale ve formuláři ano, je sloupec jiné, kde po zaškrtnutí se objeví input, do kterého půjde vypsat číslo.
 
-3) Podtabulkoubudesoučethodinzavybranéčástiapoleprohodinovousazbuvedle něhož bude celková částka, která se ze zadaných údajů vypočítá.
+3) Pod tabulkou bude součet hodin za vybrané části a pole pro hodinovou sazbu vedle něhož bude celková částka, která se ze zadaných údajů vypočítá.
 
 4) Stránka bude obsahovat tlačítko pro export, které stáhne vyplněné hodnoty ve formátu CSV (na řádku název;hodiny a na konci součet).
+
+## Spusteni projektu
+
+~~~
+npm install
+~~~
+
+Spusteni React aplikace
+
+~~~
+npm run start
+~~~
+
+Spusteni Node.js serveru
+
+~~~
+npm run dev
+~~~
+
+
