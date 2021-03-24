@@ -10,10 +10,27 @@ class FileUpload extends Component {
     }
     
     onChangeHandler = (event) => {
-        this.setState({
-            selectedFile: event.target.files[0],
-            loaded: 0,
-        })
+        if(this.checkType(event)) { 
+            this.setState({
+                selectedFile: event.target.files[0]
+            })
+        }
+    }
+
+    checkType = (event) => {
+        let file = event.target.files[0];
+        let err = '';
+        const type = 'text/csv';
+        if (file.type !== type) {
+            err = file.type+' is not a supported format\n';
+        }
+
+        if (err !== '') {
+            event.target.value = null;
+            console.log(err);
+            return false; 
+        }
+        return true;
     }
 
     onClickHandler = () => {
