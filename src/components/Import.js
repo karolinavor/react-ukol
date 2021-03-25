@@ -16,7 +16,7 @@ class Import extends Component {
         })
     }
 
-    onClickHandler = async (event) => {
+    onClickHandler = async () => {
         if (this.state.selectedFile) {
             try {
                 const data = new FormData()
@@ -25,8 +25,6 @@ class Import extends Component {
             } catch (err) {
                 console.log(err);
             }
-        } else {
-            console.log('No file selected.')
         }
     }
 

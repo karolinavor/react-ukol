@@ -19,3 +19,15 @@ input[type=file] {
 	text-align: center;
   	margin: 0 auto;
 }
+
+input[type=number] {
+	max-width: 4rem;
+}
+
+input[type=checkbox] {
+	margin-left: 1rem;
+}
+
+tbody tr td:first-child {
+	font-weight: 600;
+}

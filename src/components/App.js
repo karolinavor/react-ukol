@@ -11,8 +11,10 @@ class App extends Component {
         super(props);
         this.state = {
 			file: false,
-			data: null
-        }
+			data: null,
+			selectedData: null
+		}
+		this.handleDataChange = this.handleDataChange.bind(this);
 	}
 
 	async componentDidMount() {
@@ -21,20 +23,28 @@ class App extends Component {
             if (res.data) {
 				this.setState({
 					file: true,
-                    data: res.data
+					data: res.data,
                 })
             }
         } catch (err) {
             console.log(err);
         }
-    }
+	}
+	
+	handleDataChange(selectedData) {
+		if (selectedData) {
+			this.setState({
+				selectedData: selectedData
+			})
+		}
+	}
 	
 	render() {
 		return (
 			<div className="App">
 				<h1>React Application</h1>
-				{this.state.file ? <DataTable data={this.state.data} /> : null}
-				{this.state.file ? <Export data={this.state.data} /> : null }
+				{this.state.file ? <DataTable data={this.state.data} onDataChange={this.handleDataChange}/> : null}
+				{this.state.file ? <Export data={this.state.selectedData ? this.state.selectedData : this.state.data} /> : null }
 				<Import />
 			</div>
 		)
