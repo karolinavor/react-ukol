@@ -34,7 +34,7 @@ class App extends Component {
 			<div className="App">
 				<h1>React Application</h1>
 				{this.state.file ? <DataTable data={this.state.data} /> : null}
-				{this.state.file ? <Export /> : null }
+				{this.state.file ? <Export data={this.state.data} /> : null }
 				<Import />
 			</div>
 		)

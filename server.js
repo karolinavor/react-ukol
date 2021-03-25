@@ -22,15 +22,6 @@ app.post('/import', (req, res) => {
     });
 })
 
-app.get('/export', function (req, res, next) {
-    try {
-        const file = `${__dirname}/public/data.csv`;
-        res.download(file);
-    } catch (err) {
-        console.log(err);
-    }
-});
-
 app.listen(8000, function() {
     console.log('App running on port 8000');
 });

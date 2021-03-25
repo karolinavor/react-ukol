@@ -6,6 +6,7 @@
 	align-items: center;
 	justify-content: center;
 	font-size: 18px;
+	padding: 1rem 0;
 }
 
 .wrapper {
@@ -14,6 +15,7 @@
 	min-width: 30rem;
 }
 
-textarea {
-	display: block;
+input[type=file] {
+	text-align: center;
+  	margin: 0 auto;
 }
