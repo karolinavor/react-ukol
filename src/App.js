@@ -1,17 +1,33 @@
-import React from 'react';
-import FileUpload from './FileUpload';
-import ExportButton from './ExportButton';
+import React, { Component } from 'react';
+import Import from './Import';
+import Export from './Export';
+//import DataTable from './DataTable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-function App() {
-	return (
-		<div className="App">
-			<h1 className="mb-5">React Application</h1>
-		<FileUpload />
-		<ExportButton />
-		</div>
-	);
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			file: 'data.csv',
+		}
+	}
+
+	handleFileImport = (file) => {
+		this.setState(
+			{ file: file });
+    }
+
+	render() {
+		return (
+			<div className="App">
+				<h1>React Application</h1>
+				{/*<DataTable data={this.state.data} />*/}
+				<Import />
+				<Export />
+			</div>
+		)
+	}
 }
 
 export default App;

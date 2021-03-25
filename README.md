@@ -29,13 +29,13 @@ nebude nahráno CSV), kde rozložení bude stejné jako v CSV souboru. V každé
 npm install
 ~~~
 
-Spusteni React aplikace
+Spusteni React aplikace na portu 3000
 
 ~~~
 npm run start
 ~~~
 
-Spusteni Node.js serveru
+Spusteni Node.js serveru na portu 8000
 
 ~~~
 npm run dev
