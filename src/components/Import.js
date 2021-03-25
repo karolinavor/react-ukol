@@ -16,13 +16,15 @@ class Import extends Component {
         })
     }
 
-    onClickHandler = () => {
+    onClickHandler = async (event) => {
         if (this.state.selectedFile) {
-            const data = new FormData()
-            data.append('file', this.state.selectedFile)
-            axios.post('http://localhost:8000/upload', data).then(res => {
-                console.log(res.statusText)
-            })
+            try {
+                const data = new FormData()
+                data.append('file', this.state.selectedFile)
+                axios.post('http://localhost:8000/import', data);
+            } catch (err) {
+                console.log(err);
+            }
         } else {
             console.log('No file selected.')
         }
@@ -32,7 +34,7 @@ class Import extends Component {
         return (
             <div className="wrapper p-4 m-1">
                 <h2 className="mb-3">Import Your File</h2>
-                <form method="POST" action="/">
+                <form>
                     <div className="input-group mb-3">
                         <input
                             type="file"

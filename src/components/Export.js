@@ -5,9 +5,13 @@ import axios from 'axios';
 
 class Export extends Component {
     onClickHandler = async () => {
-        const res = await axios.get('http://localhost:8000/download');
-        const blob = new Blob([res.data], { type: 'text/csv' });
-        download(blob, 'data.csv');
+        try {
+            const res = await axios.get('http://localhost:8000/export');
+            const blob = new Blob([res.data], { type: 'text/csv' });
+            download(blob, 'data.csv');
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     render() {

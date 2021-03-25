@@ -8,6 +8,7 @@ class DataTable extends Component {
                 <CsvToHtmlTable
                     data={this.props.data}
                     csvDelimiter=";"
+                    tableClassName="table table-striped table-hover"
                 />
             </div>
         );

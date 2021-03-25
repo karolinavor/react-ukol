@@ -13,3 +13,7 @@
 	border-radius: 1rem;
 	min-width: 30rem;
 }
+
+textarea {
+	display: block;
+}

@@ -1,36 +1,28 @@
 var express = require('express');
-var app = express();
 var path = require('path');
-var multer = require('multer')
 var cors = require('cors');
+const fileUpload = require('express-fileupload');
+var app = express();
 
 app.use(cors())
-
+app.use(fileUpload());
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public')
-    },
-    filename: function (req, file, cb) {
-        cb(null, 'data.csv' )
+app.post('/import', (req, res) => {
+    if (!req.files) {
+        return res.status(500).send({ msg: "No file." })
     }
+    const file = req.files.file;
+    file.mv(`${__dirname}/public/data.csv`, function (err) {
+        if (err) {
+            console.log(err)
+            return res.status(500).send({ msg: "Error." });
+        }
+        return res.sendStatus(200);
+    });
 })
 
-var upload = multer({ storage: storage }).single('file');
-
-app.post('/upload',function(req, res) {
-    upload(req, res, function (err) {
-        if (err instanceof multer.MulterError) {
-            return res.status(500).json(err)
-        } else if (err) {
-            return res.status(500).json(err)
-        }
-        return res.status(200).send(req.file)
-    })
-});
-
-app.get('/download', function (req, res, next) {
+app.get('/export', function (req, res, next) {
     try {
         const file = `${__dirname}/public/data.csv`;
         res.download(file);
