@@ -10,21 +10,20 @@ class Import extends Component {
         }
     }
     
-    onChangeHandler = (event) => {
+    handleChange = (event) => {
         this.setState({
             selectedFile: event.target.files[0]
-        })
+        });
     }
 
-    onClickHandler = async () => {
+    handleClick = async () => {
         if (this.state.selectedFile) {
-            try {
-                const data = new FormData()
-                data.append('file', this.state.selectedFile)
-                axios.post('http://localhost:8000/import', data);
-            } catch (err) {
-                console.log(err);
-            }
+            const data = new FormData();
+            data.append('file', this.state.selectedFile);
+            axios.post('http://localhost:8000/import', data)
+            .catch(err => {
+			    console.log(err)
+		    });
         }
     }
 
@@ -37,10 +36,10 @@ class Import extends Component {
                         <input
                             type="file"
                             accept=".csv"
-                            onChange={this.onChangeHandler}
+                            onChange={this.handleChange}
                         />
                     </div>
-                    <Button name="Import" onClick={this.onClickHandler} />
+                    <Button name="Import" onClick={this.handleClick} />
                 </form>
             </div>
         );

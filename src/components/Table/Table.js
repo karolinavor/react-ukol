@@ -5,10 +5,10 @@ import HeadRow from './HeadRow';
 class Table extends Component {
 	constructor(props) {
 		super(props);
-		this.onChangeHandler = this.onChangeHandler.bind(this);
+		this.handleChange = this.handleChange.bind(this);
     }
 
-	onChangeHandler(rowName, value, type) {
+	handleChange(rowName, value, type) {
 		if (value === null) {
 			return;
 		} 
@@ -77,7 +77,7 @@ class Table extends Component {
 		return (
 			<tbody>
 				{parsedData.map((row) => (
-					<BodyRow row={row} onChange={this.onChangeHandler} />
+					<BodyRow row={row} onChange={this.ohandleChange} />
 				))}
 			</tbody>
 		);

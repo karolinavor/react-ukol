@@ -5,7 +5,7 @@ class Export extends Component {
     prepareData(data) {
         let lineArray = [];
         data.forEach((row) => {
-            let line = [row[0],row[1] + row[2]]
+            let line = [row[0], row[1] + row[2]];
             line = line.join(";");
             lineArray.push(line);
         })
