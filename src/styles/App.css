@@ -22,12 +22,9 @@ input[type=file] {
 
 input[type=number] {
 	max-width: 4rem;
+	text-align: center;
 }
 
 input[type=checkbox] {
 	margin-left: 1rem;
-}
-
-tbody tr td:first-child {
-	font-weight: 600;
 }
