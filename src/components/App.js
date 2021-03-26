@@ -46,7 +46,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<h1>React Application</h1>
+				<h1 className="mb-2">React Application</h1>
 				{this.state.file ? <Table data={this.state.data} selectedData={this.state.selectedData} onDataChange={this.handleDataChange}/> : null}
 				{this.state.file ? <Export data={this.state.selectedData ? this.state.selectedData : this.state.data} /> : null }
 				<Import />
