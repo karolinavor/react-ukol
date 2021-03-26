@@ -21,7 +21,7 @@ input[type=file] {
 }
 
 input[type=number] {
-	max-width: 4rem;
+	max-width: 5rem;
 	text-align: center;
 }
 

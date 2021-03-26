@@ -5,7 +5,15 @@ import HeadRow from './HeadRow';
 class Table extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			file: false,
+			data: null,
+			selectedData: [],
+			totalTime: null,
+			hourRate: 0
+		}
 		this.handleChange = this.handleChange.bind(this);
+		this.handleHourRateChange = this.handleHourRateChange.bind(this);
     }
 
 	handleChange(rowName, value, type) {
@@ -52,6 +60,12 @@ class Table extends Component {
 		})
 		totalTime = totalTime.reduce((totalValue, currentValue) => totalValue + currentValue, 0);
 		this.props.onDataChange(selectedData, totalTime);
+	}
+
+	handleHourRateChange(e) {
+		this.setState({
+			hourRate: e.target.value
+		})
 	}
 
 	parseCSV(data) {
@@ -108,6 +122,10 @@ class Table extends Component {
 						<tr>
 							<td>Total Time</td>
 							<td>{this.props.totalTime}</td>
+						</tr>
+						<tr>
+							<td><input type="number" min="1" onChange={this.handleHourRateChange}></input></td>
+							<td>{this.state.hourRate*this.props.totalTime}</td>
 						</tr>
 					</tbody>
 				</table>
