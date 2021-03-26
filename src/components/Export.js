@@ -9,6 +9,11 @@ class Export extends Component {
             line = line.join(";");
             lineArray.push(line);
         })
+        if (this.props.totalTime) {
+            let line = ["total", this.props.totalTime];
+            line = line.join(";");
+            lineArray.push(line);
+        }
         return lineArray.join("\n");
     }
 

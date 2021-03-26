@@ -14,16 +14,16 @@ class Table extends Component {
 		} 
 		let selectedData = this.props.selectedData;
 		if (selectedData && selectedData.length > 0) {
-			if (!selectedData.find(row =>row[0] === rowName)) { // New row
+			if (!selectedData.find(row =>row[0] === rowName)) {
 				if (type === "other") {
 					selectedData.push([rowName, null, value]);
 				} else {
 					selectedData.push([rowName, value, null]);
 				}
-			} else { // Found row
+			} else {
 				selectedData = selectedData.filter(row => {
 					if (row[0] === rowName) {
-						if (type === "other") { // Other
+						if (type === "other") {
 							row[2] = value;
 						} else if (type === "plus") {
 							row[1] += value;
@@ -40,14 +40,18 @@ class Table extends Component {
 					
 				});
 			}
-		} else { // Empty array
+		} else {
 			if (type === "other") {
 				selectedData.push([rowName, null, value]);
 			} else {
 				selectedData.push([rowName, value, null]);
 			}		
 		}
-		this.props.onDataChange(selectedData);
+		let totalTime = selectedData.map(row => {
+			return row[1]+row[2]; 
+		})
+		totalTime = totalTime.reduce((totalValue, currentValue) => totalValue + currentValue, 0);
+		this.props.onDataChange(selectedData, totalTime);
 	}
 
 	parseCSV(data) {
@@ -77,10 +81,37 @@ class Table extends Component {
 		return (
 			<tbody>
 				{parsedData.map((row) => (
-					<BodyRow row={row} onChange={this.ohandleChange} />
+					<BodyRow row={row} onChange={this.handleChange} />
 				))}
 			</tbody>
 		);
+		}
+	}
+
+	renderResults(data) {
+		if (data && data.map && data.length > 0) {
+			return (
+				<table className="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Task</th>
+							<th>Time</th>
+						</tr>
+					</thead>
+					<tbody>
+						{data.map((row) => (
+							<tr>
+								<td>{row[0]}</td>
+								<td>{row[1]+row[2]}</td>
+							</tr>
+						))}
+						<tr>
+							<td>Total Time</td>
+							<td>{this.props.totalTime}</td>
+						</tr>
+					</tbody>
+				</table>
+			);
 		}
 	}	
 
@@ -91,6 +122,7 @@ class Table extends Component {
 					{this.renderTableHeader(this.props.data)}
 					{this.renderTableBody(this.props.data)}
 				</table>
+				{this.renderResults(this.props.selectedData)}
 			</div>
 		);
 	}

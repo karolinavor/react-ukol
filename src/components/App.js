@@ -12,7 +12,8 @@ class App extends Component {
         this.state = {
 			file: false,
 			data: null,
-			selectedData: []
+			selectedData: [],
+			totalTime: null
 		}
 		this.handleDataChange = this.handleDataChange.bind(this);
 	}
@@ -31,14 +32,16 @@ class App extends Component {
 		})
 	}
 	
-	handleDataChange(selectedData) {
+	handleDataChange(selectedData,totalTime) {
 		if (selectedData) {
 			this.setState({
-				selectedData: selectedData
+				selectedData: selectedData,
+				totalTime: totalTime
 			})
 		} else {
 			this.setState({
-				selectedData: []
+				selectedData: [],
+				totalTime: null
 			})
 		}
 	}
@@ -47,8 +50,12 @@ class App extends Component {
 		return (
 			<div className="App">
 				<h1 className="mb-2">React Application</h1>
-				{this.state.file ? <Table data={this.state.data} selectedData={this.state.selectedData} onDataChange={this.handleDataChange}/> : null}
-				{this.state.file ? <Export data={this.state.selectedData ? this.state.selectedData : this.state.data} /> : null }
+				{this.state.file ?
+					<Table data={this.state.data} selectedData={this.state.selectedData} onDataChange={this.handleDataChange} totalTime={this.state.totalTime} />
+					: null}
+				{this.state.file ?
+					<Export data={this.state.selectedData ? this.state.selectedData : this.state.data} totalTime={this.state.totalTime ? this.state.totalTime : null} />
+					: null}
 				<Import />
 			</div>
 		)
